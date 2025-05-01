@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2025 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,12 +14,20 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages
+package uk.gov.hmrc.ui.specs
 
-import org.openqa.selenium.By
-import uk.gov.hmrc.selenium.component.PageObject
+import uk.gov.hmrc.ui.pages.WhatPetLookingFor
 
-trait BasePage extends PageObject {
-  protected val continueButton: By = By.className("govuk-button")
+class RequestAPetSpec extends BaseSpec {
 
+  Feature("Request a pet") {
+
+    Scenario("User requests a dog") {
+
+      Given("I request a dog")
+      WhatPetLookingFor.goTo()
+      WhatPetLookingFor.submit("dog")
+
+    }
+  }
 }
