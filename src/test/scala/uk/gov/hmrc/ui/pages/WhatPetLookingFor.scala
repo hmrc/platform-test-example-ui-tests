@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2025 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,9 +17,23 @@
 package uk.gov.hmrc.ui.pages
 
 import org.openqa.selenium.By
-import uk.gov.hmrc.selenium.component.PageObject
+import uk.gov.hmrc.configuration.TestEnvironment
 
-trait BasePage extends PageObject {
-  protected val continueButton: By = By.className("govuk-button")
+object WhatPetLookingFor extends BasePage {
+
+  private val url: String = TestEnvironment.url("platform-test-example-frontend")
+
+  private val catRadioButton: By = By.id("value_0")
+  private val dogRadioButton: By = By.id("value_1")
+
+  def goTo(): Unit =
+    get(url)
+
+  def submit(value: String): Unit =
+    value match {
+      case "cat" => selectCheckbox(catRadioButton)
+      case "dog" => selectCheckbox(dogRadioButton)
+    }
+    click(continueButton)
 
 }
