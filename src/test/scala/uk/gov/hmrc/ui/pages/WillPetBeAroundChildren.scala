@@ -14,32 +14,26 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.specs
+package uk.gov.hmrc.ui.pages
 
-import uk.gov.hmrc.ui.pages._
+import org.openqa.selenium.By
+import uk.gov.hmrc.configuration.TestEnvironment
 
-class RequestAPetSpec extends BaseSpec {
+object WillPetBeAroundChildren extends BasePage {
 
-  Feature("Request a pet") {
+  private val url: String = TestEnvironment.url("platform-test-example-frontend")
 
-    Scenario("User requests a dog") {
+  private val yesRadioButton: By = By.id("value")
+  private val noRadioButton: By = By.id("value-no")
 
-      Given("I request a dog")
-      WhatPetLookingFor.goTo()
-      WhatPetLookingFor.submit("dog")
+  def goTo(): Unit =
+    get(url)
 
-      And("it will be around children")
-      WillPetBeAroundChildren.submit("yes")
+  def submit(value: String): Unit =
+    value match {
+      case "yes" => selectCheckbox(yesRadioButton)
+      case "no" => selectCheckbox(noRadioButton)
     }
+    click(continueButton)
 
-    Scenario("User requests a cat") {
-
-      Given("I request a cat")
-      WhatPetLookingFor.goTo()
-      WhatPetLookingFor.submit("cat")
-
-      And("it will not be around children")
-      WillPetBeAroundChildren.submit("no")
-    }
-  }
 }
