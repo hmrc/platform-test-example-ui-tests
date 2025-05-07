@@ -24,7 +24,7 @@ object WillPetBeAroundChildren extends BasePage {
   private val url: String = TestEnvironment.url("platform-test-example-frontend")
 
   private val yesRadioButton: By = By.id("value")
-  private val noRadioButton: By = By.id("value-no")
+  private val noRadioButton: By  = By.id("value-no")
 
   def goTo(): Unit =
     get(url)
@@ -32,7 +32,7 @@ object WillPetBeAroundChildren extends BasePage {
   def submit(value: String): Unit =
     value match {
       case "yes" => selectCheckbox(yesRadioButton)
-      case "no" => selectCheckbox(noRadioButton)
+      case "no"  => selectCheckbox(noRadioButton)
     }
     click(continueButton)
 
