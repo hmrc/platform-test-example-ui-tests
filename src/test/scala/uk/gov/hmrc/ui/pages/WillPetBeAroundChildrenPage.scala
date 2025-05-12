@@ -19,20 +19,20 @@ package uk.gov.hmrc.ui.pages
 import org.openqa.selenium.By
 import uk.gov.hmrc.configuration.TestEnvironment
 
-object WhatPetLookingFor extends BasePage {
+object WillPetBeAroundChildrenPage extends BasePage {
 
   private val url: String = TestEnvironment.url("platform-test-example-frontend")
 
-  private val catRadioButton: By = By.id("value_0")
-  private val dogRadioButton: By = By.id("value_1")
+  private val yesRadioButton: By = By.id("value")
+  private val noRadioButton: By  = By.id("value-no")
 
   def goTo(): Unit =
     get(url)
 
   def submit(value: String): Unit =
     value match {
-      case "cat" => selectCheckbox(catRadioButton)
-      case "dog" => selectCheckbox(dogRadioButton)
+      case "yes" => selectCheckbox(yesRadioButton)
+      case "no"  => selectCheckbox(noRadioButton)
     }
     click(continueButton)
 
