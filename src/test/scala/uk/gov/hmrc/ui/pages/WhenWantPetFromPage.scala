@@ -17,23 +17,19 @@
 package uk.gov.hmrc.ui.pages
 
 import org.openqa.selenium.By
-import uk.gov.hmrc.configuration.TestEnvironment
+import uk.gov.hmrc.ui.pages.WillPetBeAroundChildrenPage.{click, continueButton}
 
-object WillPetBeAroundChildren extends BasePage {
+object WhenWantPetFromPage extends BasePage {
 
-  private val url: String = TestEnvironment.url("platform-test-example-frontend")
+  def submitDate(day: String, month: String, year: String): Unit = {
+    val dayInput: By   = By.id("value.day")
+    val monthInput: By = By.id("value.month")
+    val yearInput: By  = By.id("value.year")
 
-  private val yesRadioButton: By = By.id("value")
-  private val noRadioButton: By  = By.id("value-no")
+    sendKeys(dayInput, day)
+    sendKeys(monthInput, month)
+    sendKeys(yearInput, year)
 
-  def goTo(): Unit =
-    get(url)
-
-  def submit(value: String): Unit =
-    value match {
-      case "yes" => selectCheckbox(yesRadioButton)
-      case "no"  => selectCheckbox(noRadioButton)
-    }
     click(continueButton)
-
+  }
 }
