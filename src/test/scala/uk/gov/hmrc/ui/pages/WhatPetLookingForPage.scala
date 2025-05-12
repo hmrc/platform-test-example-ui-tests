@@ -21,19 +21,20 @@ import uk.gov.hmrc.configuration.TestEnvironment
 
 object WhatPetLookingForPage extends BasePage {
 
-  private val url: String = TestEnvironment.url("platform-test-example-frontend")
-
-  private val catRadioButton: By = By.id("value_0")
-  private val dogRadioButton: By = By.id("value_1")
-
-  def goTo(): Unit =
+  def goTo(): Unit = {
+    val url: String = TestEnvironment.url("platform-test-example-frontend")
     get(url)
+  }
 
-  def submit(value: String): Unit =
+  def submit(value: String): Unit = {
+    val catRadioButton: By = By.id("value_0")
+    val dogRadioButton: By = By.id("value_1")
+
     value match {
       case "cat" => selectCheckbox(catRadioButton)
       case "dog" => selectCheckbox(dogRadioButton)
     }
     click(continueButton)
+  }
 
 }

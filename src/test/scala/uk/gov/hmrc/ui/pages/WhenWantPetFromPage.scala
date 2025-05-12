@@ -17,7 +17,6 @@
 package uk.gov.hmrc.ui.pages
 
 import org.openqa.selenium.By
-import uk.gov.hmrc.configuration.TestEnvironment
 import uk.gov.hmrc.ui.pages.WillPetBeAroundChildrenPage.{click, continueButton}
 
 object WhenWantPetFromPage extends BasePage {
