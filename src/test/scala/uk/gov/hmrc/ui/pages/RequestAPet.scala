@@ -17,9 +17,35 @@
 package uk.gov.hmrc.ui.pages
 
 import org.openqa.selenium.By
-import uk.gov.hmrc.ui.pages.WillPetBeAroundChildrenPage.{click, continueButton}
+import uk.gov.hmrc.configuration.TestEnvironment
+import java.time.Year
 
-object WhenWantPetFromPage extends BasePage {
+object RequestAPet extends BasePage {
+
+  private val url: String = TestEnvironment.url("platform-test-example-frontend")
+
+  def goTo(): Unit =
+    get(url)
+
+  protected val continueButton: By = By.className("govuk-button")
+
+  def chooseDog(): Unit = {
+    val dogRadioButton: By = By.id("value_1")
+    selectCheckbox(dogRadioButton)
+    click(continueButton)
+  }
+
+  def chooseCat(): Unit = {
+    val catRadioButton: By = By.id("value_0")
+    selectCheckbox(catRadioButton)
+    click(continueButton)
+  }
+
+  def itWillBeAroundChildren(): Unit = {
+    val yesRadioButton: By = By.id("value")
+    selectCheckbox(yesRadioButton)
+    click(continueButton)
+  }
 
   def submitDate(day: String, month: String, year: String): Unit = {
     val dayInput: By   = By.id("value.day")
@@ -32,4 +58,11 @@ object WhenWantPetFromPage extends BasePage {
 
     click(continueButton)
   }
+
+  private val currentYear                     = Year.now().toString
+  def itIsWantedFromTheStartOfTheYear(): Unit =
+    submitDate("01", "01", currentYear)
+
+  def isItWantedUntilTheEndOfTheYear(): Unit =
+    submitDate("31", "12", currentYear)
 }

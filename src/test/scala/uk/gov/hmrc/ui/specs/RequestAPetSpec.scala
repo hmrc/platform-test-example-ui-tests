@@ -24,28 +24,26 @@ class RequestAPetSpec extends BaseSpec {
 
     Scenario("User requests a dog") {
 
-      Given("I request a dog")
-      WhatPetLookingForPage.goTo()
-      WhatPetLookingForPage.submit("dog")
+      Given("I am on the request a pet service")
+      RequestAPet.goTo()
 
-      And("it will be around children")
-      WillPetBeAroundChildrenPage.submit("yes")
-
-      And("it is wanted from the start of the year")
-      WhenWantPetFromPage.submitDate("01", "01", "2025")
+      When("I submit a request for a dog")
+      RequestAPet.chooseDog()
+      RequestAPet.itWillBeAroundChildren()
+      RequestAPet.itIsWantedFromTheStartOfTheYear()
+      RequestAPet.isItWantedUntilTheEndOfTheYear()
     }
 
     Scenario("User requests a cat") {
 
-      Given("I request a cat")
-      WhatPetLookingForPage.goTo()
-      WhatPetLookingForPage.submit("cat")
+      Given("I am on the request a pet service")
+      RequestAPet.goTo()
 
-      And("it will not be around children")
-      WillPetBeAroundChildrenPage.submit("no")
-
-      And("it is wanted from the start of the year")
-      WhenWantPetFromPage.submitDate("01", "01", "2025")
+      When("I submit a request for a cat")
+      RequestAPet.chooseCat()
+      RequestAPet.itWillBeAroundChildren()
+      RequestAPet.itIsWantedFromTheStartOfTheYear()
+      RequestAPet.isItWantedUntilTheEndOfTheYear()
     }
   }
 }

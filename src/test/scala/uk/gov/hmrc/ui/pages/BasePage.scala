@@ -19,7 +19,4 @@ package uk.gov.hmrc.ui.pages
 import org.openqa.selenium.By
 import uk.gov.hmrc.selenium.component.PageObject
 
-trait BasePage extends PageObject {
-  protected val continueButton: By = By.className("govuk-button")
-
-}
+trait BasePage extends PageObject {}
