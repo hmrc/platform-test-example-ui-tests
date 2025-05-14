@@ -33,6 +33,9 @@ class RequestAPetSpec extends BaseSpec {
 
       And("it is wanted from the start of the year")
       WhenWantPetFromPage.submitDate("01", "01", "2025")
+
+      And("it is wanted until the end of the year")
+      WhenWantPetUntilPage.submitDate("31", "12", "2025")
     }
 
     Scenario("User requests a cat") {
@@ -46,6 +49,9 @@ class RequestAPetSpec extends BaseSpec {
 
       And("it is wanted from the start of the year")
       WhenWantPetFromPage.submitDate("01", "01", "2025")
+
+      And("it is wanted until the end of the year")
+      WhenWantPetUntilPage.submitDate("31", "12", "2025")
     }
   }
 }
