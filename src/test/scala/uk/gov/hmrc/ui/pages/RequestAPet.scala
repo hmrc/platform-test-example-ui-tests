@@ -59,10 +59,14 @@ object RequestAPet extends BasePage {
     click(continueButton)
   }
 
-  private val currentYear                     = Year.now().toString
+  private val currentYear = Year.now().toString
+
   def itIsWantedFromTheStartOfTheYear(): Unit =
     submitDate("01", "01", currentYear)
 
-  def isItWantedUntilTheEndOfTheYear(): Unit =
-    submitDate("31", "12", currentYear)
+  def itIsWantedUntilTheEndOfTheYear(): Unit =
+    submitDate("01", "01", currentYear)
+
+  def confirmAnswers(): Unit =
+    click(continueButton)
 }

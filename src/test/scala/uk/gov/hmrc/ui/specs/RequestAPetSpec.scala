@@ -31,7 +31,8 @@ class RequestAPetSpec extends BaseSpec {
       RequestAPet.chooseDog()
       RequestAPet.itWillBeAroundChildren()
       RequestAPet.itIsWantedFromTheStartOfTheYear()
-      RequestAPet.isItWantedUntilTheEndOfTheYear()
+      RequestAPet.itIsWantedUntilTheEndOfTheYear()
+      RequestAPet.confirmAnswers()
     }
 
     Scenario("User requests a cat") {
@@ -43,7 +44,8 @@ class RequestAPetSpec extends BaseSpec {
       RequestAPet.chooseCat()
       RequestAPet.itWillBeAroundChildren()
       RequestAPet.itIsWantedFromTheStartOfTheYear()
-      RequestAPet.isItWantedUntilTheEndOfTheYear()
+      RequestAPet.itIsWantedUntilTheEndOfTheYear()
+      RequestAPet.confirmAnswers()
     }
   }
 }
