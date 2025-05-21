@@ -69,4 +69,17 @@ object RequestAPet extends BasePage {
 
   def confirmAnswers(): Unit =
     click(continueButton)
+
+  def makePayment(): Unit = {
+    val accountNameInput: By   = By.id("AccountName")
+    val sortCodeInput: By      = By.id("SortCode")
+    val accountNumberInput: By = By.id("AccountNumber")
+    val makePaymentButton: By  = By.className("govuk-button")
+
+    sendKeys(accountNameInput, "Persons Name")
+    sendKeys(sortCodeInput, "123456")
+    sendKeys(accountNumberInput, "112233")
+
+    click(makePaymentButton)
+  }
 }
