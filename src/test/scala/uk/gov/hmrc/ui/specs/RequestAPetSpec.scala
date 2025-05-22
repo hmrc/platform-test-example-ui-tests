@@ -16,7 +16,9 @@
 
 package uk.gov.hmrc.ui.specs
 
-import uk.gov.hmrc.ui.pages._
+import uk.gov.hmrc.ui.pages.RequestAPet
+
+import uk.gov.hmrc.ui.pages.RequestAPet.successful
 
 class RequestAPetSpec extends BaseSpec {
 
@@ -34,6 +36,9 @@ class RequestAPetSpec extends BaseSpec {
       RequestAPet.itIsWantedUntilTheEndOfTheYear()
       RequestAPet.confirmAnswers()
       RequestAPet.makePayment()
+
+      Then("I receive confirmation that my request was successful")
+      RequestAPet.confirmation should be(successful)
     }
 
     Scenario("User requests a cat") {
@@ -48,6 +53,9 @@ class RequestAPetSpec extends BaseSpec {
       RequestAPet.itIsWantedUntilTheEndOfTheYear()
       RequestAPet.confirmAnswers()
       RequestAPet.makePayment()
+
+      Then("I receive confirmation that my request was successful")
+      RequestAPet.confirmation should be(successful)
     }
   }
 }
