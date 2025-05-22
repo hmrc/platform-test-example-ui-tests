@@ -82,4 +82,9 @@ object RequestAPet extends BasePage {
 
     click(makePaymentButton)
   }
+
+  def confirmation: String =
+    getText(By.tagName("h1"))
+
+  val successful: String = "Pet requested"
 }
