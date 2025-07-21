@@ -17,5 +17,15 @@
 package uk.gov.hmrc.ui.pages
 
 import uk.gov.hmrc.selenium.component.PageObject
+import org.openqa.selenium.WebDriver
+import org.openqa.selenium.support.ui.{FluentWait, Wait}
+import uk.gov.hmrc.selenium.webdriver.Driver
 
-trait BasePage extends PageObject {}
+import java.time.Duration
+
+trait BasePage extends PageObject {
+
+  def fluentWait: Wait[WebDriver] = new FluentWait[WebDriver](Driver.instance)
+    .withTimeout(Duration.ofSeconds(3))
+    .pollingEvery(Duration.ofSeconds(1))
+}
