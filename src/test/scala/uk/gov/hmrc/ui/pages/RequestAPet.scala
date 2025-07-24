@@ -26,16 +26,20 @@ object RequestAPet extends BasePage {
   private val url: String = TestEnvironment.url("platform-test-example-frontend")
 
   def goTo(): Unit = {
+    println("entering goto")
     get(url)
     fluentWait.until(ExpectedConditions.urlContains(url))
+    println("exiting goto")
   }
 
   protected val continueButton: By = By.className("govuk-button")
 
   def chooseDog(): Unit = {
+    println("entering choosedog")
     val dogRadioButton: By = By.id("value_1")
     selectCheckbox(dogRadioButton)
     click(continueButton)
+    println("exiting choosedog")
   }
 
   def chooseCat(): Unit = {
@@ -54,12 +58,13 @@ object RequestAPet extends BasePage {
     val dayInput: By   = By.id("value.day")
     val monthInput: By = By.id("value.month")
     val yearInput: By  = By.id("value.year")
-
+    println("entering submitdate")
     sendKeys(dayInput, day)
     sendKeys(monthInput, month)
     sendKeys(yearInput, year)
 
     click(continueButton)
+    println("exiting submitdate")
   }
 
   private val currentYear = Year.now().toString
