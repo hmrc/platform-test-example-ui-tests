@@ -1,8 +1,6 @@
-**This is the template README. Please update this with project specific content.**
-
 # platform-test-example-ui-tests
 
-<SERVICE_NAME> UI journey tests.
+Platform Test UI journey tests.
 
 ## Pre-requisites
 
@@ -14,10 +12,10 @@ Start Mongo Docker container as follows:
 docker run --rm -d -p 27017:27017 --name mongo percona/percona-server-mongodb:6.0
 ```
 
-Start `PLATFORM_TEST_EXAMPLE_UI_JOURNEY_TESTS` services as follows:
+Start `PLATFORM_TEST_EXAMPLE_UI_TESTS` services as follows:
 
 ```bash
-sm2 --start PLATFORM_TEST_EXAMPLE_UI_JOURNEY_TESTS
+sm2 --start PLATFORM_TEST_EXAMPLE_UI_TESTS
 ```
 
 ## Tests
