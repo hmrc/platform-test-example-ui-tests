@@ -1,8 +1,6 @@
-**This is the template README. Please update this with project specific content.**
-
 # platform-test-example-ui-tests
 
-<SERVICE_NAME> UI journey tests.
+Platform Test UI journey tests.
 
 ## Pre-requisites
 
@@ -14,21 +12,30 @@ Start Mongo Docker container as follows:
 docker run --rm -d -p 27017:27017 --name mongo percona/percona-server-mongodb:6.0
 ```
 
-Start `PLATFORM_TEST_EXAMPLE_UI_JOURNEY_TESTS` services as follows:
+Start `PLATFORM_TEST_EXAMPLE_UI_TESTS` services as follows:
 
 ```bash
-sm2 --start PLATFORM_TEST_EXAMPLE_UI_JOURNEY_TESTS
+sm2 --start PLATFORM_TEST_EXAMPLE_UI_TESTS
 ```
 
 ## Tests
 
-Run tests as follows:
+Run tests in command line as follows:
 
 * Argument `<browser>` must be `chrome`, `edge`, or `firefox`.
 * Argument `<environment>` must be `local`, `dev`, `qa` or `staging`.
 
 ```bash
-sbt clean -Dbrowser="chrome" -Denvironment="local" test testReport
+sbt clean -Dbrowser="<browser>" -Denvironment="<environment>" test testReport
+```
+
+Run tests as script as follows:
+
+* Argument `<browser>` must be `chrome`, `edge`, or `firefox`.
+* Argument `<environment>` must be `local`, `dev`, `qa` or `staging`.
+
+```bash
+./run-tests.sh <browser> <environment>
 ```
 
 ## Scalafmt

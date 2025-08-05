@@ -17,14 +17,16 @@
 package uk.gov.hmrc.ui.specs
 
 import uk.gov.hmrc.ui.pages.RequestAPet
-
 import uk.gov.hmrc.ui.pages.RequestAPet.successful
+import uk.gov.hmrc.ui.specs.tags.ExampleTaggedTest
 
 class RequestAPetSpec extends BaseSpec {
 
   Feature("Request a pet") {
 
-    Scenario("User requests a dog") {
+    // This test is tagged with 'ExampleTaggedTest' to demonstrate how to use ScalaTest tags.
+    // To run tagged tests only, use the sbt command shown in run-tests.sh.
+    Scenario("User requests a dog", ExampleTaggedTest) {
 
       Given("I am on the request a pet service")
       RequestAPet.goTo()
