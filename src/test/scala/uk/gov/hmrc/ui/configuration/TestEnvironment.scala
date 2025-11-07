@@ -1,0 +1,49 @@
+/*
+ * Copyright 2023 HM Revenue & Customs
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package uk.gov.hmrc.ui.configuration
+
+import com.typesafe.config.{Config, ConfigFactory}
+
+object TestEnvironment {
+
+  // Everything is a `def` so that tests can invalidate the config
+  private def configuration: Config            = ConfigFactory.load()
+  private def environment: String              = configuration.getString("environment")
+  private def defaultConfiguration: Config     = configuration.getConfig("local")
+  private def environmentConfiguration: Config = configuration.getConfig(environment).withFallback(defaultConfiguration)
+
+  def url(service: String): String = {
+    val port = environment match {
+      case "local" => s":${servicePort(service)}"
+      case _       => ""
+    }
+
+    s"${serviceHost(service)}$port${serviceRoute(service)}"
+  }
+
+  private def serviceHost(service: String): String =
+    if (environmentConfiguration.hasPath(s"services.$service.host"))
+      environmentConfiguration.getString(s"services.$service.host")
+    else
+      environmentConfiguration.getString("services.host")
+
+  private def servicePort(service: String): String =
+    environmentConfiguration.getString(s"services.$service.port")
+
+  private def serviceRoute(service: String): String =
+    environmentConfiguration.getString(s"services.$service.productionRoute")
+}

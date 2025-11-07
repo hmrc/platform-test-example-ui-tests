@@ -18,17 +18,18 @@ package uk.gov.hmrc.ui.pages
 
 import org.openqa.selenium.By
 import org.openqa.selenium.support.ui.ExpectedConditions
-import uk.gov.hmrc.configuration.TestEnvironment
+import uk.gov.hmrc.ui.configuration.TestEnvironment
+import uk.gov.hmrc.ui.pages.BasePage
+
 import java.time.Year
 
 object RequestAPet extends BasePage {
 
   private val url: String = TestEnvironment.url("platform-test-example-frontend")
 
-  def goTo(): Unit = {
+  def goTo(): Unit =
     get(url)
-    fluentWait.until(ExpectedConditions.urlContains(url))
-  }
+    //  fluentWait.until(ExpectedConditions.urlContains(url))
 
   protected val continueButton: By = By.className("govuk-button")
 
