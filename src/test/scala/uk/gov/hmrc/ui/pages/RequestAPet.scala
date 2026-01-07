@@ -23,6 +23,8 @@ import java.time.Year
 
 object RequestAPet extends BasePage {
 
+  val continueButton: By = By.className("govuk-button")
+
   private val url: String = TestEnvironment.url("platform-test-example-frontend")
 
   def goTo(): Unit = {
@@ -30,7 +32,11 @@ object RequestAPet extends BasePage {
     fluentWait.until(ExpectedConditions.urlContains(url))
   }
 
-  protected val continueButton: By = By.className("govuk-button")
+  def chooseRequestAPet(): Unit = {
+    val createAPetButton: By = By.id("value_1")
+    selectCheckbox(createAPetButton)
+    click(continueButton)
+  }
 
   def chooseDog(): Unit = {
     val dogRadioButton: By = By.id("value_1")

@@ -28,8 +28,9 @@ class RequestAPetSpec extends BaseSpec {
     // To run tagged tests only, use the sbt command shown in run-tests.sh.
     Scenario("User requests a dog", ExampleTaggedTest) {
 
-      Given("I am on the request a pet service")
+      Given("I am on the home screen of the pet service and select request a pet")
       RequestAPet.goTo()
+      RequestAPet.chooseRequestAPet()
 
       When("I submit a request for a dog")
       RequestAPet.chooseDog()
@@ -45,8 +46,9 @@ class RequestAPetSpec extends BaseSpec {
 
     Scenario("User requests a cat") {
 
-      Given("I am on the request a pet service")
+      Given("I am on the home screen of the pet service and select request a pet")
       RequestAPet.goTo()
+      RequestAPet.chooseRequestAPet()
 
       When("I submit a request for a cat")
       RequestAPet.chooseCat()
