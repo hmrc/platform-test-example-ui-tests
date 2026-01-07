@@ -29,14 +29,11 @@ class CreateAnAccountSpec extends BaseSpec {
       Given("I am on the home screen of the pet service and select to create an account")
       CreateAnAccount.goTo()
       CreateAnAccount.chooseCreateAnAccount()
-      
 
       When("I submit a request creating an account")
       CreateAnAccount.addAName()
       CreateAnAccount.addAnEmail()
-      //TODO add location step back in
-     // CreateAnAccount.selectALocation()
-      
+      CreateAnAccount.selectALocation()
 
     }
   }

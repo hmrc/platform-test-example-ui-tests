@@ -19,9 +19,10 @@ package uk.gov.hmrc.ui.pages
 import org.openqa.selenium.By
 import org.openqa.selenium.support.ui.ExpectedConditions
 import uk.gov.hmrc.configuration.TestEnvironment
+import org.openqa.selenium.support.ui.Select
+import uk.gov.hmrc.selenium.webdriver.Driver
 
 object CreateAnAccount extends BasePage {
-
 
   val continueButton: By = By.className("govuk-button")
 
@@ -38,7 +39,6 @@ object CreateAnAccount extends BasePage {
     click(continueButton)
   }
 
-
   def addAName(): Unit = {
     val accountNameInput: By = By.id("value")
     sendKeys(accountNameInput, "Persons Name")
@@ -51,10 +51,11 @@ object CreateAnAccount extends BasePage {
     click(continueButton)
   }
 
-//  def selectALocation(): Unit = {
-//    val accountNameInput: By = By.id("location-picker-select")
-//    sendKeys(accountNameInput, "Persons Name")
-//    click(continueButton)
-//  }
+  def selectALocation(): Unit = {
+    val locationNameInput = Driver.instance.findElement(By.id("location-picker-select"))
+    val dropdown          = new Select(locationNameInput)
+    dropdown.selectByVisibleText("Germany")
+    click(continueButton)
+  }
 
 }
