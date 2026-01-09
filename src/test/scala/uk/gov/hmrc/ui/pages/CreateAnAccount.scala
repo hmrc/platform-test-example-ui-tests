@@ -47,14 +47,13 @@ object CreateAnAccount extends BasePage {
 
   def addAnEmail(): Unit = {
     val accountEmailInput: By = By.id("value")
-    sendKeys(accountEmailInput, "Persons Name")
+    sendKeys(accountEmailInput, "PersonsEmail")
     click(continueButton)
   }
 
   def selectALocation(): Unit = {
-    val locationNameInput = Driver.instance.findElement(By.id("location-picker-select"))
-    val dropdown          = new Select(locationNameInput)
-    dropdown.selectByVisibleText("Germany")
+    val locationNameInput: By = By.id("value")
+    sendKeys(locationNameInput, "Germany")
     click(continueButton)
   }
 
