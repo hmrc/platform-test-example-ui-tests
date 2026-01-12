@@ -19,8 +19,6 @@ package uk.gov.hmrc.ui.pages
 import org.openqa.selenium.By
 import org.openqa.selenium.support.ui.ExpectedConditions
 import uk.gov.hmrc.configuration.TestEnvironment
-import org.openqa.selenium.support.ui.Select
-import uk.gov.hmrc.selenium.webdriver.Driver
 
 object CreateAnAccount extends BasePage {
 
