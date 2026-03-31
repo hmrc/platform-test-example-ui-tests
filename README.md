@@ -1,6 +1,7 @@
 # platform-test-example-ui-tests
 
 Platform Test UI journey tests.
+These are tests that run against the platform-test-example-frontend, and is an example of best practices in using the Test Approach.
 
 ## Pre-requisites
 
@@ -23,7 +24,7 @@ sm2 --start PLATFORM_TEST_EXAMPLE_UI_TESTS
 Run tests in command line as follows:
 
 * Argument `<browser>` must be `chrome`, `edge`, or `firefox`.
-* Argument `<environment>` must be `local`, `dev`, `qa` or `staging`.
+* Argument `<environment>` must be `local` or `staging`.
 
 ```bash
 sbt clean -Dbrowser="<browser>" -Denvironment="<environment>" test testReport
@@ -32,7 +33,7 @@ sbt clean -Dbrowser="<browser>" -Denvironment="<environment>" test testReport
 Run tests as script as follows:
 
 * Argument `<browser>` must be `chrome`, `edge`, or `firefox`.
-* Argument `<environment>` must be `local`, `dev`, `qa` or `staging`.
+* Argument `<environment>` must be `local` or `staging`.
 
 ```bash
 ./run-tests.sh <browser> <environment>
