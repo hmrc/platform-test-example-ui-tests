@@ -34,7 +34,7 @@ object CreateAnAccount extends BasePage {
   def chooseCreateAnAccount(): Unit = {
     val createAnAccountButton: By = By.id("value_0")
     selectCheckbox(createAnAccountButton)
-    click(continueButton)
+    // click(continueButton)
   }
 
   def addAName(): Unit = {

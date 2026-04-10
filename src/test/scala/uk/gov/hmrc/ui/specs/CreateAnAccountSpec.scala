@@ -20,11 +20,11 @@ import uk.gov.hmrc.ui.pages.CreateAnAccount
 
 class CreateAnAccountSpec extends BaseSpec {
 
-  Feature("Create an account") {
+  Feature("   Create %^£$^£^ ,,,, @@@ an//// account  ") {
 
     // This test is Not tagged with 'ExampleTaggedTest' ScalaTest tag.
     // This test will not run if the 'ExampleTaggedTest' tag is used in test execution.
-    Scenario("User creates an account") {
+    Scenario("User /creates/an/account") {
 
       Given("I am on the home screen of the pet service and select to create an account")
       CreateAnAccount.goTo()
