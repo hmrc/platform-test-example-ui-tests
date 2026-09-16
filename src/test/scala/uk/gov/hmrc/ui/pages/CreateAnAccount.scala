@@ -39,18 +39,21 @@ object CreateAnAccount extends BasePage {
 
   def addAName(): Unit = {
     val accountNameInput: By = By.id("value")
+    fluentWait.until(ExpectedConditions.visibilityOfElementLocated(accountNameInput))
     sendKeys(accountNameInput, "Persons Name")
     click(continueButton)
   }
 
   def addAnEmail(): Unit = {
     val accountEmailInput: By = By.id("value")
+    fluentWait.until(ExpectedConditions.visibilityOfElementLocated(accountEmailInput))
     sendKeys(accountEmailInput, "PersonsEmail")
     click(continueButton)
   }
 
   def selectALocation(): Unit = {
     val locationNameInput: By = By.id("value")
+    fluentWait.until(ExpectedConditions.visibilityOfElementLocated(locationNameInput))
     sendKeys(locationNameInput, "Germany")
     click(continueButton)
   }

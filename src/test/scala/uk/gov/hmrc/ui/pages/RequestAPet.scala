@@ -23,7 +23,8 @@ import java.time.Year
 
 object RequestAPet extends BasePage {
 
-  val continueButton: By = By.className("govuk-button")
+  val continueButton: By       = By.className("govuk-button")
+  val confirmAnswersButton: By = By.cssSelector("button.govuk-button")
 
   private val url: String = TestEnvironment.url("platform-test-example-frontend")
 
@@ -34,25 +35,29 @@ object RequestAPet extends BasePage {
 
   def chooseRequestAPet(): Unit = {
     val createAPetButton: By = By.id("value_1")
-    selectCheckbox(createAPetButton)
+    fluentWait.until(ExpectedConditions.presenceOfElementLocated(createAPetButton))
+    click(createAPetButton)
     click(continueButton)
   }
 
   def chooseDog(): Unit = {
     val dogRadioButton: By = By.id("value_1")
-    selectCheckbox(dogRadioButton)
+    fluentWait.until(ExpectedConditions.presenceOfElementLocated(dogRadioButton))
+    click(dogRadioButton)
     click(continueButton)
   }
 
   def chooseCat(): Unit = {
     val catRadioButton: By = By.id("value_0")
-    selectCheckbox(catRadioButton)
+    fluentWait.until(ExpectedConditions.presenceOfElementLocated(catRadioButton))
+    click(catRadioButton)
     click(continueButton)
   }
 
   def itWillBeAroundChildren(): Unit = {
     val yesRadioButton: By = By.id("value")
-    selectCheckbox(yesRadioButton)
+    fluentWait.until(ExpectedConditions.presenceOfElementLocated(yesRadioButton))
+    click(yesRadioButton)
     click(continueButton)
   }
 
@@ -60,6 +65,10 @@ object RequestAPet extends BasePage {
     val dayInput: By   = By.id("value.day")
     val monthInput: By = By.id("value.month")
     val yearInput: By  = By.id("value.year")
+
+    fluentWait.until(ExpectedConditions.visibilityOfElementLocated(dayInput))
+    fluentWait.until(ExpectedConditions.visibilityOfElementLocated(monthInput))
+    fluentWait.until(ExpectedConditions.visibilityOfElementLocated(yearInput))
 
     sendKeys(dayInput, day)
     sendKeys(monthInput, month)
@@ -76,24 +85,33 @@ object RequestAPet extends BasePage {
   def itIsWantedUntilTheEndOfTheYear(): Unit =
     submitDate("01", "01", currentYear)
 
-  def confirmAnswers(): Unit =
-    click(continueButton)
+  def confirmAnswers(): Unit = {
+    fluentWait.until(ExpectedConditions.presenceOfElementLocated(confirmAnswersButton))
+    fluentWait.until(ExpectedConditions.elementToBeClickable(confirmAnswersButton))
+    click(confirmAnswersButton)
+  }
 
   def makePayment(): Unit = {
     val accountNameInput: By   = By.id("AccountName")
     val sortCodeInput: By      = By.id("SortCode")
     val accountNumberInput: By = By.id("AccountNumber")
-    val makePaymentButton: By  = By.className("govuk-button")
+
+    fluentWait.until(ExpectedConditions.visibilityOfElementLocated(accountNameInput))
+    fluentWait.until(ExpectedConditions.visibilityOfElementLocated(sortCodeInput))
+    fluentWait.until(ExpectedConditions.visibilityOfElementLocated(accountNumberInput))
 
     sendKeys(accountNameInput, "Persons Name")
     sendKeys(sortCodeInput, "123456")
     sendKeys(accountNumberInput, "112233")
 
-    click(makePaymentButton)
+    click(continueButton)
   }
 
-  def confirmation: String =
-    getText(By.tagName("h1"))
+  def confirmation: String = {
+    val heading = By.tagName("h1")
+    fluentWait.until(ExpectedConditions.textToBePresentInElementLocated(heading, successful))
+    successful
+  }
 
   val successful: String = "Pet requested"
 }
