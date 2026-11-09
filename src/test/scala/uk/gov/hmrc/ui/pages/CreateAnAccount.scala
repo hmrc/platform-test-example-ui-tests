@@ -22,7 +22,8 @@ import uk.gov.hmrc.configuration.TestEnvironment
 
 object CreateAnAccount extends BasePage {
 
-  val continueButton: By = By.className("govuk-button")
+  val continueButton: By       = By.className("govuk-button")
+  val confirmAnswersButton: By = By.cssSelector("button.govuk-button")
 
   private val url: String = TestEnvironment.url("platform-test-example-frontend")
 
@@ -58,4 +59,33 @@ object CreateAnAccount extends BasePage {
     click(continueButton)
   }
 
+  def submitDOB(day: String, month: String, year: String): Unit = {
+    val dayInput: By   = By.id("value.day")
+    val monthInput: By = By.id("value.month")
+    val yearInput: By  = By.id("value.year")
+
+    fluentWait.until(ExpectedConditions.visibilityOfElementLocated(dayInput))
+    fluentWait.until(ExpectedConditions.visibilityOfElementLocated(monthInput))
+    fluentWait.until(ExpectedConditions.visibilityOfElementLocated(yearInput))
+
+    sendKeys(dayInput, day)
+    sendKeys(monthInput, month)
+    sendKeys(yearInput, year)
+
+    click(continueButton)
+  }
+
+  def confirmAnswers(): Unit = {
+    fluentWait.until(ExpectedConditions.presenceOfElementLocated(confirmAnswersButton))
+    fluentWait.until(ExpectedConditions.elementToBeClickable(confirmAnswersButton))
+    click(confirmAnswersButton)
+  }
+
+  def confirmation: String = {
+    val heading = By.tagName("h1")
+    fluentWait.until(ExpectedConditions.textToBePresentInElementLocated(heading, successful))
+    successful
+  }
+
+  val successful: String = "Account created"
 }
