@@ -75,10 +75,20 @@ object CreateAnAccount extends BasePage {
     click(continueButton)
   }
 
+  def addNationality(): Unit = {
+    val nationalityCheckbox1: By = By.id("value_0")
+    val nationalityCheckbox2: By = By.id("value_1")
+    fluentWait.until(ExpectedConditions.presenceOfElementLocated(nationalityCheckbox1))
+    fluentWait.until(ExpectedConditions.presenceOfElementLocated(nationalityCheckbox2))
+    click(nationalityCheckbox1)
+    click(nationalityCheckbox2)
+    click(continueButton)
+  }
+
   def chooseLikeAPet(): Unit = {
-    val likeAPetButton: By = By.id("value_0")
-    fluentWait.until(ExpectedConditions.presenceOfElementLocated(likeAPetButton))
-    click(likeAPetButton)
+    val likeAPetOption: By = By.id("value_0")
+    fluentWait.until(ExpectedConditions.presenceOfElementLocated(likeAPetOption))
+    click(likeAPetOption)
     click(continueButton)
   }
 
