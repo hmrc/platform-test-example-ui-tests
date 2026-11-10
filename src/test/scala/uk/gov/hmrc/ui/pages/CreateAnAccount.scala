@@ -75,6 +75,13 @@ object CreateAnAccount extends BasePage {
     click(continueButton)
   }
 
+  def chooseLikeAPet(): Unit = {
+    val likeAPetButton: By = By.id("value_0")
+    fluentWait.until(ExpectedConditions.presenceOfElementLocated(likeAPetButton))
+    click(likeAPetButton)
+    click(continueButton)
+  }
+
   def confirmAnswers(): Unit = {
     fluentWait.until(ExpectedConditions.presenceOfElementLocated(confirmAnswersButton))
     fluentWait.until(ExpectedConditions.elementToBeClickable(confirmAnswersButton))

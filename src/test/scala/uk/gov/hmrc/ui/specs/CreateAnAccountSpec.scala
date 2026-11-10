@@ -35,6 +35,7 @@ class CreateAnAccountSpec extends BaseSpec {
       CreateAnAccount.addAnEmail()
       CreateAnAccount.selectALocation()
       CreateAnAccount.submitDOB("01", "01", "2000")
+      CreateAnAccount.chooseLikeAPet()
       CreateAnAccount.confirmAnswers()
 
       Then("I receive confirmation that my request was successful")
