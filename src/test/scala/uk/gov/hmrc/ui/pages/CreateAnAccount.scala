@@ -20,6 +20,8 @@ import org.openqa.selenium.By
 import org.openqa.selenium.support.ui.ExpectedConditions
 import uk.gov.hmrc.configuration.TestEnvironment
 
+import java.nio.file.Paths
+
 object CreateAnAccount extends BasePage {
 
   val continueButton: By       = By.className("govuk-button")
@@ -76,13 +78,45 @@ object CreateAnAccount extends BasePage {
   }
 
   def addNationality(): Unit = {
-    val nationalityCheckbox1: By = By.id("value_0")
-    val nationalityCheckbox2: By = By.id("value_1")
-    fluentWait.until(ExpectedConditions.presenceOfElementLocated(nationalityCheckbox1))
-    fluentWait.until(ExpectedConditions.presenceOfElementLocated(nationalityCheckbox2))
-    click(nationalityCheckbox1)
-    click(nationalityCheckbox2)
+    fluentWait.until(ExpectedConditions.presenceOfElementLocated(By.id("value_0")))
+    fluentWait.until(ExpectedConditions.presenceOfElementLocated(By.id("value_1")))
+    selectCheckbox(By.id("value_0"))
+    selectCheckbox(By.id("value_1"))
     click(continueButton)
+  }
+
+  def uploadID(): Unit = {
+    val resource = Option(getClass.getResource("/images/TestImage.png"))
+      .getOrElse(
+        throw new IllegalStateException(
+          "Missing test resource: /images/TestImage.png"
+        )
+      )
+
+    val imagePath = Paths.get(resource.toURI).toAbsolutePath.toString
+
+    val chooseFile = fluentWait.until(
+      ExpectedConditions.presenceOfElementLocated(
+        By.cssSelector("input[type='file']")
+      )
+    )
+
+    chooseFile.sendKeys(imagePath)
+    
+    fluentWait.until(
+      ExpectedConditions.textToBe(
+        By.cssSelector(".govuk-file-upload-button__status"),
+        Paths.get(imagePath).getFileName.toString
+      )
+    )
+
+    fluentWait
+      .until(
+        ExpectedConditions.elementToBeClickable(
+          By.cssSelector("button.govuk-button[type='submit']")
+        )
+      )
+      .click()
   }
 
   def chooseLikeAPet(): Unit = {
