@@ -36,6 +36,7 @@ class CreateAnAccountSpec extends BaseSpec {
       CreateAnAccount.selectALocation()
       CreateAnAccount.submitDOB("01", "01", "2000")
       CreateAnAccount.addNationality()
+      CreateAnAccount.uploadID()
       CreateAnAccount.chooseLikeAPet()
       CreateAnAccount.confirmAnswers()
 
