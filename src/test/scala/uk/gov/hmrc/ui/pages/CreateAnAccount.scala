@@ -102,7 +102,7 @@ object CreateAnAccount extends BasePage {
     )
 
     chooseFile.sendKeys(imagePath)
-    
+
     fluentWait.until(
       ExpectedConditions.textToBe(
         By.cssSelector(".govuk-file-upload-button__status"),
